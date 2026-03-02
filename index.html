@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solving Deciles for Grouped Data</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="Gemini_Generated_Image_dh4dn7dh4dn7dh4d-removebg-preview.png" type="image/png">
+    
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <header class="app-header">
+        <img src="Gemini_Generated_Image_dh4dn7dh4dn7dh4d-removebg-preview.png" alt="Stephanie Valencia Logo" class="brand-icon">
+        <h1>Measures of Position: Deciles</h1>
+    </header>
+
+    <main class="app-view active-view">
+        <div class="lesson-content">
+            <h2>Understanding Deciles</h2>
+            <p><strong>Deciles</strong> divide a sorted dataset into exactly 10 equal parts. Because it is divided into 10 parts, the denominator in our formula changes to 10.</p>
+            <p style="text-align: center; font-size: 1.2em; background: #f0fdf4; padding: 15px; border-radius: 8px; border: 1px solid #4CAF50;">
+                $D_k = LB + \left( \frac{\frac{kN}{10} - cf_b}{f_{D_k}} \right) i$
+            </p>
+        </div>
+
+        <div class="data-container step-container">
+            <h3>Guided Practice 1: Solve for D6 (Exam Scores)</h3>
+            <p><em>Step 1: Complete the table to unlock the next step.</em></p>
+            <table>
+                <thead><tr><th>Scores</th><th>f</th><th>LB</th><th>&lt;cf</th></tr></thead>
+                <tbody>
+                    <tr><td>41 - 50</td><td>5</td><td><input type="number" id="d-lb-0"></td><td><input type="number" id="d-cf-0"></td></tr>
+                    <tr id="d6-row"><td>31 - 40</td><td>12</td><td><input type="number" id="d-lb-1"></td><td><input type="number" id="d-cf-1"></td></tr>
+                    <tr><td>21 - 30</td><td>15</td><td><input type="number" id="d-lb-2"></td><td><input type="number" id="d-cf-2"></td></tr>
+                    <tr><td>11 - 20</td><td>6</td><td><input type="number" id="d-lb-3"></td><td><input type="number" id="d-cf-3"></td></tr>
+                    <tr><td>1 - 10</td><td>2</td><td><input type="number" id="d-lb-4"></td><td><input type="number" id="d-cf-4"></td></tr>
+                </tbody>
+                <tfoot><tr><th>Total</th><th>N = 40</th><th></th><th></th></tr></tfoot>
+            </table>
+            <button id="btn-d-table">Submit Table</button>
+            <p id="d-err-table" class="error">Check your LBs and &lt;cf values.</p>
+        </div>
+
+        <div id="d-step2" class="step-container hidden-view">
+            <p><strong>Step 2: Find Position</strong></p>
+            <p>Formula: $\frac{kN}{10}$</p>
+            <p><strong>Position:</strong> <input type="number" id="d-pos" style="width:100px;"> <button id="btn-d-pos" style="width:auto; padding:5px 10px; margin-left: 10px;">Check</button></p>
+            <p id="d-err-pos" class="error">Incorrect. k=6 and N=40.</p>
+        </div>
+
+        <div id="d-step3" class="step-container hidden-view">
+            <p><strong>Step 3: Extract Variables</strong> (Look at the highlighted row above)</p>
+            <div class="variable-inputs">
+                <label>LB: <input type="number" id="d-lb-var" step="0.5"></label>
+                <label>cf_b: <input type="number" id="d-cfb"></label>
+                <label>f: <input type="number" id="d-f"></label>
+                <label>i: <input type="number" id="d-i"></label>
+            </div>
+            <button id="btn-d-vars">Check Variables</button>
+            <p id="d-err-vars" class="error">Incorrect variables.</p>
+        </div>
+
+        <div id="d-step4" class="step-container hidden-view">
+            <p><strong>Step 4: Solve</strong></p>
+            <label>Final D6 Answer: <input type="number" id="d-final" step="0.01"></label>
+            <button id="btn-d-final">Submit D6</button>
+            <p id="d-err-final" class="error">Incorrect calculation.</p>
+        </div>
+
+        <div id="d2-container" class="data-container step-container hidden-view" style="border-color: #ff9800; border-width: 3px;">
+            <h3 style="color: #e65100;">Guided Practice 2: Solve for D8 (Employee Ages)</h3>
+            <p style="color: #4CAF50; font-weight: bold;">✓ Unlocked!</p>
+            <table>
+                <thead><tr><th>Age</th><th>f</th><th>LB</th><th>&lt;cf</th></tr></thead>
+                <tbody>
+                    <tr><td>51 - 60</td><td>5</td><td><input type="number" id="d2-lb-0"></td><td><input type="number" id="d2-cf-0"></td></tr>
+                    <tr id="d8-row"><td>41 - 50</td><td>15</td><td><input type="number" id="d2-lb-1"></td><td><input type="number" id="d2-cf-1"></td></tr>
+                    <tr><td>31 - 40</td><td>20</td><td><input type="number" id="d2-lb-2"></td><td><input type="number" id="d2-cf-2"></td></tr>
+                    <tr><td>21 - 30</td><td>12</td><td><input type="number" id="d2-lb-3"></td><td><input type="number" id="d2-cf-3"></td></tr>
+                    <tr><td>11 - 20</td><td>8</td><td><input type="number" id="d2-lb-4"></td><td><input type="number" id="d2-cf-4"></td></tr>
+                </tbody>
+                <tfoot><tr><th>Total</th><th>N = 60</th><th></th><th></th></tr></tfoot>
+            </table>
+            <button id="btn-d2-table">Submit Table</button>
+            <p id="d2-err-table" class="error">Check values carefully.</p>
+        </div>
+
+        <div id="d2-step2" class="step-container hidden-view">
+            <p><strong>Position:</strong> <input type="number" id="d2-pos" style="width:100px;"> <button id="btn-d2-pos" style="width:auto; padding:5px 10px;">Check</button></p>
+            <p id="d2-err-pos" class="error">Incorrect. k=8 and N=60.</p>
+        </div>
+
+        <div id="d2-step3" class="step-container hidden-view">
+            <div class="variable-inputs">
+                <label>LB: <input type="number" id="d2-lb-var" step="0.5"></label>
+                <label>cf_b: <input type="number" id="d2-cfb"></label>
+                <label>f: <input type="number" id="d2-f"></label>
+                <label>i: <input type="number" id="d2-i"></label>
+            </div>
+            <button id="btn-d2-vars">Check Variables</button>
+            <p id="d2-err-vars" class="error">Check the highlighted row.</p>
+        </div>
+
+        <div id="d2-step4" class="step-container hidden-view">
+            <label>Final D8 Answer: <input type="number" id="d2-final" step="0.01"></label>
+            <button id="btn-d2-final">Submit D8</button>
+            <p id="d2-err-final" class="error">Incorrect.</p>
+        </div>
+
+        <div id="d-quiz-container" class="step-container hidden-view" style="border-color: #4CAF50; border-width: 3px;">
+            <h3 style="color: #2e7d32;">Deciles Assessment (15 Items)</h3>
+            <div id="deciles-quiz-wrapper"></div>
+            <button id="btn-d-quiz" class="btn-success">Submit Assessment</button>
+            <p id="d-err-quiz" class="error"></p>
+        </div>
+
+        <div id="module-complete" class="hidden-view" style="text-align: center; margin-top: 30px; padding: 20px; background: #e8f5e9; border: 2px solid #4CAF50; border-radius: 8px;">
+            <h2 style="color: #2e7d32; margin: 0;">🎉 Module Complete!</h2>
+            <p>Mastered Deciles in grouped data.</p>
+        </div>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 Gero Valencia | APpGEROMetrics</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
